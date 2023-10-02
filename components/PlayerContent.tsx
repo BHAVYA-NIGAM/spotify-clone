@@ -1,21 +1,17 @@
-'use client';
+"use client";
 
-import useSound from 'use-sound';
-import { useEffect, useState } from 'react';
-import { BsPauseFill, BsPlayFill } from 'react-icons/bs';
-import {
-  MdOutlineVolumeOff,
-  MdOutlineVolumeUp,
-  MdOutlineVolumeDown,
-} from 'react-icons/md';
-import { AiFillStepBackward, AiFillStepForward } from 'react-icons/ai';
+import useSound from "use-sound";
+import { useEffect, useState } from "react";
+import { BsPauseFill, BsPlayFill } from "react-icons/bs";
+import { HiSpeakerWave, HiSpeakerXMark } from "react-icons/hi2";
+import { AiFillStepBackward, AiFillStepForward } from "react-icons/ai";
 
-import { Song } from '@/types';
-import usePlayer from '@/hooks/usePlayer';
+import { Song } from "@/types";
+import usePlayer from "@/hooks/usePlayer";
 
-import LikeButton from './LikeButton';
-import MediaItem from './MediaItem';
-import Slider from './Slider';
+import LikeButton from "./LikeButton";
+import MediaItem from "./MediaItem";
+import Slider from "./Slider";
 
 interface PlayerContentProps {
   song: Song;
@@ -28,12 +24,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
   const [isPlaying, setIsPlaying] = useState(false);
 
   const Icon = isPlaying ? BsPauseFill : BsPlayFill;
-  const VolumeIcon =
-    volume === 0
-      ? MdOutlineVolumeOff
-      : volume < 0.5
-      ? MdOutlineVolumeDown
-      : MdOutlineVolumeUp;
+  const VolumeIcon = volume === 0 ? HiSpeakerXMark : HiSpeakerWave;
 
   const onPlayNext = () => {
     if (player.ids.length === 0) {
@@ -73,7 +64,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
       onPlayNext();
     },
     onpause: () => setIsPlaying(false),
-    format: ['mp3'],
+    format: ["mp3"],
   });
 
   useEffect(() => {
